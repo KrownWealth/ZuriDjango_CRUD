@@ -1,46 +1,31 @@
-import imp
-from msilib.schema import ListView
-from pyexpat import model
-from django.urls import reverse_lazy
 from django.shortcuts import render
-from django.views.generic.edit import PostListView
-from django.views.generic.edit import PostCreateView
-from django.views.generic.edit import PostDetailView
-from django.views.generic.edit import PostUpdateView
-from django.views.generic.edit import PostDeleteView
-from I4G031580IOP.blog.models import Post
-from models import blog
+from .models import Post
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from .import urls
+from django.views import generic
+from django.urls import reverse_lazy
 
-# My class views goes here
+# Create your views here
 
-class blogPostListView(ListView):
+class PostListView(generic.ListView):
     model = Post
 
-
-# This is postcreateview
-
-class blogCreateView(CreateView):
+class PostCreateView(generic.CreateView):
     models = Post
     fields = "_all_"
     success_url_ = reverse_lazy("blog:all")
 
 
-# This is Details view class
-
-class blogDetailView(DetailView):
+class PostDetailView(generic.DetailView):
     model = Post
 
-
-# This is update view class
-
-class blogUpdateView(UpdateView):
+class PostUpdateView(generic.UpdateView):
     model = Post
     fields = "_all_"
     success_url_ = reverse_lazy("blog:all")
 
 
-# This is delete view class
-class blogDeleteView(UpdateView):
+class PostDeleteView(generic.UpdateView):
     model = Post
     fields = "_all_"
     success_url_ = reverse_lazy("blog:all")
